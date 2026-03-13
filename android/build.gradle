@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 android {
     namespace 'com.shootergame'
     compileSdk rootProject.ext.compileSdkVersion
-
     defaultConfig {
         applicationId 'com.shootergame'
         minSdk rootProject.ext.minSdkVersion
@@ -12,16 +11,11 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
+    kotlinOptions { jvmTarget = '17' }
     sourceSets {
         main {
             java.srcDirs = ['src/main/kotlin']
@@ -29,31 +23,24 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            debuggable true
-        }
+        release { minifyEnabled false }
+        debug { debuggable true }
     }
 }
+
+configurations { natives }
 
 dependencies {
     implementation project(':core')
     implementation "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
-
     natives "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-armeabi-v7a"
     natives "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-arm64-v8a"
     natives "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-x86"
     natives "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-x86_64"
 }
 
-// Copy native libs
-configurations { natives }
 task copyAndroidNatives {
     doFirst {
         file("libs/armeabi-v7a").mkdirs()
