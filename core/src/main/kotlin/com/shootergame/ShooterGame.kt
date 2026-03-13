@@ -1,9 +1,9 @@
 package com.shootergame
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.Texture
 import com.shootergame.screens.MenuScreen
 import com.shootergame.utils.Assets
 
@@ -21,9 +21,14 @@ class ShooterGame : Game() {
 
     override fun create() {
         batch  = SpriteBatch()
-        font   = BitmapFont()
         assets = Assets()
         assets.load()
+        font = BitmapFont()
+        font.data.setScale(2f)
+        font.region.texture.setFilter(
+            Texture.TextureFilter.Linear,
+            Texture.TextureFilter.Linear
+        )
         setScreen(MenuScreen(this))
     }
 
