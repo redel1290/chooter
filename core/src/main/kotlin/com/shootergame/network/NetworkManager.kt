@@ -31,7 +31,7 @@ class NetworkManager(private val role: NetworkRole) {
     private var running = AtomicBoolean(false)
     private var receiveThread: Thread? = null
 
-    var localIp: String = getLocalIp()
+    var localIp: String = fetchLocalIp()
     var onStateReceived: ((PlayerState) -> Unit)? = null
     var onConnected:     (() -> Unit)?             = null
 
@@ -134,7 +134,7 @@ class NetworkManager(private val role: NetworkRole) {
         )
     }
 
-    private fun getLocalIp(): String {
+    private fun fetchLocalIp(): String {
         return try {
             NetworkInterface.getNetworkInterfaces().toList()
                 .flatMap { it.inetAddresses.toList() }
