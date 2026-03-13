@@ -1,11 +1,20 @@
 buildscript {
+    ext {
+        gdxVersion        = '1.12.1'
+        kotlinVersion     = '1.9.22'
+        minSdkVersion     = 24
+        targetSdkVersion  = 34
+        compileSdkVersion = 34
+        versionCode       = 1
+        versionName       = '1.0.0'
+    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.2'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
     }
 }
 
@@ -15,15 +24,4 @@ allprojects {
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
-}
-
-ext {
-    appName        = 'ShooterGame'
-    gdxVersion     = '1.12.1'
-    kotlinVersion  = '1.9.22'
-    minSdkVersion  = 24
-    targetSdkVersion = 34
-    compileSdkVersion = 34
-    versionCode    = 1
-    versionName    = '1.0.0'
 }
