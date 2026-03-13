@@ -35,7 +35,7 @@ class GameMap(val index: Int) {
 
         when (index) {
             0 -> { // Arena — open with crates
-                name   = "Арена"
+                name   = "Arena"
                 spawn1 = Pair(120f, 360f)
                 spawn2 = Pair(1160f, 360f)
 
@@ -64,7 +64,7 @@ class GameMap(val index: Int) {
                 crates += Crate(1020f, 150f)
             }
             else -> { // Maze — corridors
-                name   = "Лабіринт"
+                name   = "Maze"
                 spawn1 = Pair(120f, 120f)
                 spawn2 = Pair(1160f, 600f)
 

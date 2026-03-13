@@ -229,8 +229,8 @@ class GameScreen(
     }
 
     private fun checkWin() {
-        if (myKills >= WIN_KILLS) { gameOver = true; winnerMsg = "ТИ ПЕРЕМІГ!" }
-        if (remoteKills >= WIN_KILLS) { gameOver = true; winnerMsg = "ПРОТИВНИК ПЕРЕМІГ" }
+        if (myKills >= WIN_KILLS) { gameOver = true; winnerMsg = "YOU WIN!" }
+        if (remoteKills >= WIN_KILLS) { gameOver = true; winnerMsg = "ENEMY WINS" }
     }
 
     private fun draw() {
@@ -258,8 +258,8 @@ class GameScreen(
         game.font.draw(game.batch, "Я: $myKills", 20f, ShooterGame.VIRTUAL_HEIGHT - 15f)
 
         game.font.color = Color(1f, 0.3f, 0.3f, 1f)
-        layout.setText(game.font, "Противник: $remoteKills")
-        game.font.draw(game.batch, "Противник: $remoteKills",
+        layout.setText(game.font, "Enemy: $remoteKills")
+        game.font.draw(game.batch, "Enemy: $remoteKills",
             ShooterGame.VIRTUAL_WIDTH - layout.width - 20f, ShooterGame.VIRTUAL_HEIGHT - 15f)
 
         // Map name
@@ -292,7 +292,7 @@ class GameScreen(
         game.batch.begin()
 
         game.font.data.setScale(3.5f)
-        val won = winnerMsg == "ТИ ПЕРЕМІГ!"
+        val won = winnerMsg == "YOU WIN!"
         game.font.color = if (won) Color(0.2f, 1f, 0.3f, 1f) else Color(1f, 0.3f, 0.2f, 1f)
         layout.setText(game.font, winnerMsg)
         game.font.draw(game.batch, winnerMsg,
@@ -309,7 +309,7 @@ class GameScreen(
 
         game.font.data.setScale(1.3f)
         game.font.color = Color(0.7f, 0.7f, 0.7f, 1f)
-        val hint = "Натисни будь-де для повернення в меню"
+        val hint = "Tap anywhere to return"
         layout.setText(game.font, hint)
         game.font.draw(game.batch, hint,
             ShooterGame.VIRTUAL_WIDTH / 2f - layout.width / 2f,

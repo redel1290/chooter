@@ -28,7 +28,7 @@ class LobbyScreen(private val game: ShooterGame) : Screen {
     private var myWeapon   = 0
     private var p2Weapon   = 0
     private var selectedMap = 0 // 0=Arena, 1=Maze
-    private val weapons = listOf("Пістолет", "Дробовик")
+    private val weapons = listOf("Pistol", "Shotgun")
     private val maps    = listOf("Арена", "Лабіринт")
 
     // Buttons
@@ -130,20 +130,20 @@ class LobbyScreen(private val game: ShooterGame) : Screen {
             NetworkRole.HOST -> {
                 val ip = networkManager?.localIp ?: "—"
                 game.font.color = Color(0.8f, 0.8f, 0.8f, 1f)
-                game.font.draw(game.batch, "Ваш IP: $ip", 390f, 580f)
+                game.font.draw(game.batch, "Your IP: $ip", 390f, 580f)
                 if (!connected) {
                     game.font.color = Color(0.6f, 0.8f, 1f, 1f)
-                    game.font.draw(game.batch, "Очікування гравця...", 390f, 520f)
+                    game.font.draw(game.batch, "Waiting...", 390f, 520f)
                 } else {
                     game.font.color = Color(0.3f, 1f, 0.3f, 1f)
-                    game.font.draw(game.batch, "Гравець 1 ✅  Гравець 2 ✅", 390f, 520f)
+                    game.font.draw(game.batch, "Player 1 ✅  Player 2 ✅", 390f, 520f)
                     // Weapon row
                     game.font.color = Color.WHITE
-                    game.font.draw(game.batch, "Ваша зброя:", 290f, 270f)
+                    game.font.draw(game.batch, "Weapon:", 290f, 270f)
                     game.font.draw(game.batch, weapons[myWeapon], 350f, 235f)
                     drawLabel("‹", btnWepL); drawLabel("›", btnWepR)
                     // Map row
-                    game.font.draw(game.batch, "Карта:", 690f, 270f)
+                    game.font.draw(game.batch, "Map:", 690f, 270f)
                     game.font.draw(game.batch, maps[selectedMap], 720f, 235f)
                     drawLabel("‹", btnMapL); drawLabel("›", btnMapR)
                     drawLabel("ПОЧАТИ", btnStart)
@@ -152,16 +152,16 @@ class LobbyScreen(private val game: ShooterGame) : Screen {
             }
             NetworkRole.CLIENT -> {
                 game.font.color = Color(0.8f, 0.8f, 0.8f, 1f)
-                game.font.draw(game.batch, "Введіть IP хоста:", 390f, 450f)
+                game.font.draw(game.batch, "Enter host IP:", 390f, 450f)
                 game.font.color = Color.WHITE
                 game.font.draw(game.batch, ipInput.toString() + "|", 400f, 390f)
                 if (!connected) {
                     drawLabel("ПІДКЛЮЧИТИСЬ", floatArrayOf(490f, 250f, 300f, 70f))
                 } else {
                     game.font.color = Color(0.3f, 1f, 0.3f, 1f)
-                    game.font.draw(game.batch, "Підключено! Чекаємо хоста...", 390f, 200f)
+                    game.font.draw(game.batch, "Connected!", 390f, 200f)
                     game.font.color = Color.WHITE
-                    game.font.draw(game.batch, "Ваша зброя:", 290f, 270f)
+                    game.font.draw(game.batch, "Weapon:", 290f, 270f)
                     game.font.draw(game.batch, weapons[myWeapon], 350f, 235f)
                     drawLabel("‹", btnWepL); drawLabel("›", btnWepR)
                 }
@@ -231,11 +231,11 @@ class LobbyScreen(private val game: ShooterGame) : Screen {
     private fun tryConnect() {
         val ip = ipInput.toString().trim()
         if (ip.isEmpty()) { statusMsg = "Введіть IP!"; return }
-        statusMsg = "Підключення..."
+        statusMsg = "Connecting..."
         networkManager = NetworkManager(NetworkRole.CLIENT)
         networkManager?.connectToHost(ip,
             onSuccess = { connected = true; statusMsg = "" },
-            onError   = { statusMsg = "Помилка підключення" }
+            onError   = { statusMsg = "Connection error" }
         )
     }
 

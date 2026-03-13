@@ -19,7 +19,7 @@ class SettingsScreen(private val game: ShooterGame) : Screen {
 
     // Tabs: 0=Sound, 1=Network, 2=Controls, 3=Graphics, 4=About
     private var activeTab = 0
-    private val tabs = listOf("Звук", "Мережа", "Керування", "Графіка", "Про гру")
+    private val tabs = listOf("Sound", "Network", "Controls", "Graphics", "About")
 
     private val btnBack = floatArrayOf(40f, 30f, 180f, 60f)
 
@@ -127,7 +127,7 @@ class SettingsScreen(private val game: ShooterGame) : Screen {
                 game.font.draw(game.batch, "${(GameSettings.musicVolume * 100).toInt()}%", 820f, 510f)
                 game.font.draw(game.batch, "Гучність ефектів", 100f, 420f)
                 game.font.draw(game.batch, "${(GameSettings.sfxVolume * 100).toInt()}%", 820f, 410f)
-                game.font.draw(game.batch, "Звук увімкнено", 100f, 320f)
+                game.font.draw(game.batch, "Sound увімкнено", 100f, 320f)
                 game.font.draw(game.batch, if (GameSettings.soundEnabled) "ВКЛ" else "ВИКЛ", 400f, 312f)
             }
             1 -> {
@@ -140,7 +140,7 @@ class SettingsScreen(private val game: ShooterGame) : Screen {
             }
             2 -> {
                 game.font.draw(game.batch, "Розмір джойстиків:", 100f, 540f)
-                val labels = listOf("Малий", "Середній", "Великий")
+                val labels = listOf("Small", "Medium", "Large")
                 labels.forEachIndexed { i, l ->
                     game.font.color = Color.WHITE
                     layout.setText(game.font, l)
