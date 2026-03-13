@@ -185,7 +185,6 @@ class LobbyScreen(private val game: ShooterGame) : Screen {
     private fun handleInput() {
         // Keyboard input for IP
         if (role == NetworkRole.CLIENT && !connected) {
-            val typed = Gdx.input.textInput // Not available directly — use soft keyboard via dialog
         }
 
         if (!Gdx.input.justTouched()) return
